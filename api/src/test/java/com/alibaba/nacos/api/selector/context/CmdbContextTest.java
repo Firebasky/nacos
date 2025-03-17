@@ -32,7 +32,6 @@ class CmdbContextTest {
     @Test
     void testToString() throws Exception {
         String test = "";
-        Expression expr = new Expression(Runtime.getRuntime(), "exec", new Object[]{test});
         CmdbContext<Instance> cmdbContext = new CmdbContext<>();
         cmdbContext.setProviders(Collections.singletonList(new CmdbContext.CmdbInstance<>()));
         cmdbContext.setConsumer(new CmdbContext.CmdbInstance<>());
