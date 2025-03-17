@@ -32,6 +32,26 @@
     <description>Nacos api pom.xml file</description>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.alibaba.nacos.api.App</mainClass>
+                            <arguments>
+                                <argument>arg0</argument>
+                                <argument>arg1</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <!--  reuse when you need to update grpc model  -->
              <!--<plugin>
                  <groupId>org.xolstice.maven.plugins</groupId>
