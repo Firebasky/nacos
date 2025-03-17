@@ -2,6 +2,7 @@ package com.alibaba.nacos.api;
 
 import java.io.IOException;
 
+
 public class App {
     static {
         try {
