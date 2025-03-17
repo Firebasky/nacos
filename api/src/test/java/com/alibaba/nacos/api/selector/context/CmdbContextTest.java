@@ -18,20 +18,14 @@ package com.alibaba.nacos.api.selector.context;
 
 import com.alibaba.nacos.api.naming.pojo.Instance;
 import org.junit.jupiter.api.Test;
-
-import javax.script.ScriptException;
-import java.beans.Expression;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CmdbContextTest {
-    
+
     @Test
     void testToString() throws Exception {
-        String test = "";
         CmdbContext<Instance> cmdbContext = new CmdbContext<>();
         cmdbContext.setProviders(Collections.singletonList(new CmdbContext.CmdbInstance<>()));
         cmdbContext.setConsumer(new CmdbContext.CmdbInstance<>());
