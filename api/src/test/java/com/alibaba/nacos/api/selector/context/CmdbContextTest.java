@@ -18,7 +18,6 @@ package com.alibaba.nacos.api.selector.context;
 
 import com.alibaba.nacos.api.naming.pojo.Instance;
 import org.junit.jupiter.api.Test;
-
 import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
